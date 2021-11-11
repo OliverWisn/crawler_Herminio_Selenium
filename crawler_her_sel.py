@@ -11,12 +11,15 @@ options = Options()
 options.add_argument("--headless")
 driver = Firefox(options=options)
 driver.get("https://www.flashscore.com/")
+# Wait for page to fully render
 time.sleep(5)
 pageSource = driver.page_source
 bsObj = BeautifulSoup(pageSource, "html.parser")
-games = bsObj.find_all("div", {"class":"event__participant event__participant--away"})
+games = bsObj.find_all("div", {"class":\
+    "event__participant event__participant--home"})
+# print(len(games))
 
 for game in games:
-    print(game["class"])
+    print(game.get_text())
 
 driver.quit()
