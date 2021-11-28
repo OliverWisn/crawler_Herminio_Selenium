@@ -16,10 +16,9 @@ options.add_argument("--headless")
 driver = Firefox(options=options)
 driver.get(my_url)
 # Wait for page to fully render
-# time.sleep(5)
 try:
     element = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located(By.CLASS_NAME, "tv-ico.icon.icon--tv"))
+        EC.presence_of_element_located((By.ID, "box-over-content-a")))
 finally:
     pageSource = driver.page_source
     bsObj = BeautifulSoup(pageSource, "html.parser")
@@ -30,4 +29,4 @@ finally:
     for game in games:
         print(game.get_text())
 
-    driver.quit()
+    driver.close()
