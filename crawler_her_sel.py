@@ -36,6 +36,12 @@ finally:
     matches_soccer = soccer.get_attribute("data-sport-count")
     print(matches_soccer)
 
+    countries = driver.find_elements(By.CLASS_NAME , "event__title--type")
+    print(len(countries))
+
+    sum_to_iterate = int(matches_soccer) + len(countries)
+    print(sum_to_iterate)
+
 #    iframe = driver.switch_to.frame("lsadvert-zid-396-iframe")
 #    home_team_x = driver.find_element(By.XPATH , "/html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[2]/div[3]").text
 #    home_team_y = driver.find_element(By.CLASS_NAME , "event__participant event__participant--home")
@@ -47,9 +53,7 @@ finally:
 #    for game in home_teams_z:
 #        print(game.text)
     
-    for ind in range(int(matches_soccer)):
-#        h_team = "/html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div["+str(ind)+"]/div[3]"
-#        print(h_team)
+    for ind in range(1, (sum_to_iterate + 1)):
         try:
             home_team = driver.find_element(By.XPATH , './/div[@class="sportName soccer"]/div['+str(ind)+']/div[3]').text
             list_of_home_teams.append(home_team)
@@ -68,6 +72,7 @@ finally:
 # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[2]/div[1]
 # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[2]/div[2]
 # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[2]/div[3]
+# /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[197]/div[3]
 
 # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[10]/div[3]
 # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[10]/div[4]
