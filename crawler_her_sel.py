@@ -20,7 +20,9 @@ driver.get(my_url)
 # Prepare the blank dictionary to fill in for pandas.
 dictionary_of_matches = {}
 
+list_of_countries = []
 list_of_home_teams = []
+list_of_scores_for_home = []
 
 # Wait for page to fully render
 try:
@@ -37,7 +39,6 @@ finally:
     print(matches_soccer)
 
     countries = driver.find_elements(By.CLASS_NAME , "event__title--type")
-    print(len(countries))
 
     sum_to_iterate = int(matches_soccer) + len(countries)
     print(sum_to_iterate)
@@ -55,6 +56,13 @@ finally:
     
     for ind in range(1, (sum_to_iterate + 1)):
         try:
+            country = driver.find_element(By.XPATH , './/div[@class="sportName soccer"]/div['+str(ind)+']/div[1]/div/span[1]').text
+            list_of_countries.append(country)
+        except:
+            country = ""
+            list_of_countries.append(country)
+            
+        try:
             home_team = driver.find_element(By.XPATH , './/div[@class="sportName soccer"]/div['+str(ind)+']/div[3]').text
             list_of_home_teams.append(home_team)
 #            home_team = driver.find_element(By.XPATH , '//div[@class="event__participant event__participant--home"][ind]').text
@@ -62,10 +70,18 @@ finally:
             home_team = ""
             list_of_home_teams.append(home_team)
 
-        print(home_team)
+#        try:
+#            score_for_home_team = driver.find_element(By.XPATH , './/div[@class="sportName soccer"]/div['+str(ind)+']/div[5]').text
+#            list_of_scores_for_home.append(score_for_home_team)
+#        except:
+#            score_for_home_team = ""
+#            list_of_scores_for_home.append(score_for_home_team)
 
+        print(country)
+
+    dictionary_of_matches['countries'] = list_of_countries
     dictionary_of_matches['home_teams'] = list_of_home_teams
-    print(len(list_of_home_teams))
+    print(len(list_of_countries))
 
 # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div
 # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[1]
@@ -73,6 +89,10 @@ finally:
 # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[2]/div[2]
 # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[2]/div[3]
 # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[197]/div[3]
+
+# /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[1]/div[1]/div/span[1]
+# /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[3]/div[1]/div/span[1]
+# /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[6]/div[1]/div/span[1]
 
 # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[10]/div[3]
 # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[10]/div[4]
