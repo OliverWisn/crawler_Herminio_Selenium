@@ -21,6 +21,7 @@ driver.get(my_url)
 dictionary_of_matches = {}
 
 list_of_countries = []
+list_of_leagues = []
 list_of_home_teams = []
 list_of_scores_for_home = []
 
@@ -39,6 +40,10 @@ finally:
     print(matches_soccer)
 
     countries = driver.find_elements(By.CLASS_NAME , "event__title--type")
+    print(len(countries))
+
+    leagues = driver.find_elements(By.CLASS_NAME , "event__title--name")
+    print(len(leagues))
 
     sum_to_iterate = int(matches_soccer) + len(countries)
     print(sum_to_iterate)
@@ -61,11 +66,17 @@ finally:
         except:
             country = ""
             list_of_countries.append(country)
-            
+
+        try:
+            league = driver.find_element(By.XPATH , './/div[@class="sportName soccer"]/div['+str(ind)+']/div[1]/div/span[2]').text
+            list_of_leagues.append(league)
+        except:
+            league = ""
+            list_of_leagues.append(league)
+
         try:
             home_team = driver.find_element(By.XPATH , './/div[@class="sportName soccer"]/div['+str(ind)+']/div[3]').text
             list_of_home_teams.append(home_team)
-
         except:
             home_team = ""
             list_of_home_teams.append(home_team)
@@ -77,12 +88,13 @@ finally:
             score_for_home_team = ""
             list_of_scores_for_home.append(score_for_home_team)
 
-        print(score_for_home_team)
+        print(league)
 
     dictionary_of_matches["countries"] = list_of_countries
+    dictionary_of_matches["leagues"] = list_of_leagues
     dictionary_of_matches["home_teams"] = list_of_home_teams
     dictionary_of_matches["scores_for_home_teams"] = list_of_scores_for_home
-    print(len(list_of_scores_for_home))
+    print(len(list_of_leagues))
 
 # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div
 # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[1]
@@ -94,6 +106,9 @@ finally:
 # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[1]/div[1]/div/span[1]
 # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[3]/div[1]/div/span[1]
 # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[6]/div[1]/div/span[1]
+
+# /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[1]/div[1]/div/span[2]
+# /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[3]/div[1]/div/span[2]
 
 # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[10]/div[3]
 # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[10]/div[4]
