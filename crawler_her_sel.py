@@ -65,23 +65,24 @@ finally:
         try:
             home_team = driver.find_element(By.XPATH , './/div[@class="sportName soccer"]/div['+str(ind)+']/div[3]').text
             list_of_home_teams.append(home_team)
-#            home_team = driver.find_element(By.XPATH , '//div[@class="event__participant event__participant--home"][ind]').text
+
         except:
             home_team = ""
             list_of_home_teams.append(home_team)
 
-#        try:
-#            score_for_home_team = driver.find_element(By.XPATH , './/div[@class="sportName soccer"]/div['+str(ind)+']/div[5]').text
-#            list_of_scores_for_home.append(score_for_home_team)
-#        except:
-#            score_for_home_team = ""
-#            list_of_scores_for_home.append(score_for_home_team)
+        try:
+            score_for_home_team = driver.find_element(By.XPATH , './/div[@class="sportName soccer"]/div['+str(ind)+']/div[5]').text
+            list_of_scores_for_home.append(score_for_home_team)
+        except:
+            score_for_home_team = ""
+            list_of_scores_for_home.append(score_for_home_team)
 
-        print(country)
+        print(score_for_home_team)
 
-    dictionary_of_matches['countries'] = list_of_countries
-    dictionary_of_matches['home_teams'] = list_of_home_teams
-    print(len(list_of_countries))
+    dictionary_of_matches["countries"] = list_of_countries
+    dictionary_of_matches["home_teams"] = list_of_home_teams
+    dictionary_of_matches["scores_for_home_teams"] = list_of_scores_for_home
+    print(len(list_of_scores_for_home))
 
 # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div
 # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[1]
