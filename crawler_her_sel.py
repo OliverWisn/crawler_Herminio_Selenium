@@ -20,9 +20,11 @@ driver.get(my_url)
 # Prepare the blank dictionary to fill in for pandas.
 dictionary_of_matches = {}
 
+list_of_home_teams = []
+
 # Wait for page to fully render
 try:
-    element = WebDriverWait(driver, 15).until(
+    element = WebDriverWait(driver, 20).until(
         EC.presence_of_element_located((By.ID, "box-over-content-a")))
 finally:
     # Loads the full code of the page into a variable.
@@ -33,9 +35,39 @@ finally:
     soccer = driver.find_element(By.XPATH , "/html/body/div[5]/div/div[1]/a[1]")
     matches_soccer = soccer.get_attribute("data-sport-count")
     print(matches_soccer)
+
+#    iframe = driver.switch_to.frame("lsadvert-zid-396-iframe")
+#    home_team_x = driver.find_element(By.XPATH , "/html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[2]/div[3]").text
+#    home_team_y = driver.find_element(By.CLASS_NAME , "event__participant event__participant--home")
+#    home_teams_z = driver.find_elements(By.XPATH , './/div[@class="sportName soccer"]/div[2]/div[3]')
+#    .//table[@class='table-main detail-odds sortable']/tbody/tr/td[2]/div
+#    print(home_team_x)
+#    print(home_team_y)
+#    print(len(home_teams_z))
+#    for game in home_teams_z:
+#        print(game.text)
     
+    for ind in range(int(matches_soccer)):
+#        h_team = "/html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div["+str(ind)+"]/div[3]"
+#        print(h_team)
+        try:
+            home_team = driver.find_element(By.XPATH , './/div[@class="sportName soccer"]/div['+str(ind)+']/div[3]').text
+            list_of_home_teams.append(home_team)
+#            home_team = driver.find_element(By.XPATH , '//div[@class="event__participant event__participant--home"][ind]').text
+        except:
+            home_team = ""
+            list_of_home_teams.append(home_team)
 
+        print(home_team)
 
+    dictionary_of_matches['home_teams'] = list_of_home_teams
+    print(len(list_of_home_teams))
+
+# /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div
+# /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[1]
+# /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[2]/div[1]
+# /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[2]/div[2]
+# /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[2]/div[3]
 
 # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[10]/div[3]
 # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[10]/div[4]
@@ -47,4 +79,4 @@ finally:
 # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[11]/div[5]
 # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[11]/div[6]
 
-    driver.close()
+    driver.quit()
