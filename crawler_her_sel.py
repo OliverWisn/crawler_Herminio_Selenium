@@ -25,6 +25,7 @@ list_of_leagues = []
 list_of_home_teams = []
 list_of_scores_for_home = []
 list_of_scores_for_away = []
+list_of_away_teams = []
 
 # Wait for page to fully render
 try:
@@ -96,14 +97,22 @@ finally:
             score_for_away_team = ""
             list_of_scores_for_away.append(score_for_away_team)
 
-        print(score_for_away_team)
+        try:
+            away_team = driver.find_element(By.XPATH , './/div[@class="sportName soccer"]/div['+str(ind)+']/div[4]').text
+            list_of_away_teams.append(away_team)
+        except:
+            away_team = ""
+            list_of_away_teams.append(away_team)
+
+        print(away_team)
 
     dictionary_of_matches["countries"] = list_of_countries
     dictionary_of_matches["leagues"] = list_of_leagues
     dictionary_of_matches["home_teams"] = list_of_home_teams
     dictionary_of_matches["scores_for_home_teams"] = list_of_scores_for_home
     dictionary_of_matches["scores_for_away_teams"] = list_of_scores_for_away
-    print(len(list_of_scores_for_away))
+    dictionary_of_matches["away_teams"] = list_of_away_teams
+    print(len(list_of_away_teams))
 
 # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div
 # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[1]
