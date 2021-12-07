@@ -118,6 +118,8 @@ finally:
     # Creating of the frame for the data with the help of the pandas 
     # package.
     df_res = pd.DataFrame(dictionary_of_matches)
-    print(df_res)
+
+    # Saving of the properly formatted data to the csv file.
+    df_res.to_csv("flashscore.csv", encoding="utf-8")
 
     driver.quit()
