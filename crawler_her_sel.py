@@ -1,6 +1,8 @@
 # crawler_her_sel.py
 # -*- coding: utf-8 -*-
 
+import time
+
 from selenium.webdriver import Firefox
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
@@ -119,7 +121,10 @@ finally:
     # package.
     df_res = pd.DataFrame(dictionary_of_matches)
 
-    # Saving of the properly formatted data to the csv file.
-    df_res.to_csv("flashscore.csv", encoding="utf-8")
+    # Saving of the properly formatted data to the csv file. The date 
+    # and the time of the scraping are hidden in the file name.
+    name_of_file = lambda: "flashscore{}.csv".format(time.strftime(\
+        "%Y%m%d-%H.%M.%S"))
+    df_res.to_csv(name_of_file(), encoding="utf-8")
 
     driver.quit()
