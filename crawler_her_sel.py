@@ -115,4 +115,9 @@ finally:
     dictionary_of_matches["scores_for_away_teams"] = list_of_scores_for_away
     dictionary_of_matches["away_teams"] = list_of_away_teams
 
+    # Creating of the frame for the data with the help of the pandas 
+    # package.
+    df_res = pd.DataFrame(dictionary_of_matches)
+    print(df_res)
+
     driver.quit()
