@@ -20,6 +20,7 @@ driver.get(my_url)
 # Prepare the blank dictionary to fill in for pandas.
 dictionary_of_matches = {}
 
+# Preparation of lists with scraped data.
 list_of_countries = []
 list_of_leagues = []
 list_of_home_teams = []
@@ -40,11 +41,16 @@ finally:
     soccer = driver.find_element(By.XPATH , "/html/body/div[5]/div/div[1]/a[1]")
     matches_soccer = soccer.get_attribute("data-sport-count")
 
+    # Determining the number of the countries for the given football 
+    # matches.
     countries = driver.find_elements(By.CLASS_NAME , "event__title--type")
 
+    # Determination of the number that determines the number of 
+    # the loop iterations.
     sum_to_iterate = int(matches_soccer) + len(countries)
     
     for ind in range(1, (sum_to_iterate + 1)):
+        # Scraping of the country names.
         try:
             country = driver.find_element(By.XPATH ,\
              '//div[@class="sportName soccer"]/div['+str(ind)+\
@@ -54,6 +60,7 @@ finally:
             country = ""
             list_of_countries.append(country)
 
+        # Scraping of the league names.
         try:
             league = driver.find_element(By.XPATH ,\
              '//div[@class="sportName soccer"]/div['+str(ind)+\
@@ -63,6 +70,7 @@ finally:
             league = ""
             list_of_leagues.append(league)
 
+        # Scraping of the home team names.
         try:
             home_team = driver.find_element(By.XPATH ,\
              '//div[@class="sportName soccer"]/div['+str(ind)+']/div[3]').text
@@ -71,6 +79,7 @@ finally:
             home_team = ""
             list_of_home_teams.append(home_team)
 
+        # Scraping of the home team scores.
         try:
             score_for_home_team = driver.find_element(By.XPATH ,\
              '//div[@class="sportName soccer"]/div['+str(ind)+']/div[5]').text
@@ -79,6 +88,7 @@ finally:
             score_for_home_team = ""
             list_of_scores_for_home.append(score_for_home_team)
 
+        # Scraping of the away team scores.
         try: 
             score_for_away_team = driver.find_element(By.XPATH ,\
              '//div[@class="sportName soccer"]/div['+str(ind)+']/div[6]').text
@@ -87,6 +97,7 @@ finally:
             score_for_away_team = ""
             list_of_scores_for_away.append(score_for_away_team)
 
+        # Scraping of the away team names.
         try:
             away_team = driver.find_element(By.XPATH ,\
              '//div[@class="sportName soccer"]/div['+str(ind)+']/div[4]').text
@@ -95,6 +106,8 @@ finally:
             away_team = ""
             list_of_away_teams.append(away_team)
 
+    # Add lists with the scraped data to the dictionary in the correct 
+    # order.
     dictionary_of_matches["countries"] = list_of_countries
     dictionary_of_matches["leagues"] = list_of_leagues
     dictionary_of_matches["home_teams"] = list_of_home_teams
