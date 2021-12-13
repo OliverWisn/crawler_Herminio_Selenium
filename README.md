@@ -13,7 +13,7 @@ python 3.9 - rest in requirements.txt .
 - I made this script so that the master branch had always 
   the functioning code. 
 - To run the script you must run the file "crawler_her_sel.py". 
-- The creeper only scrapes the data from the main page 
+- The crawler only scrapes the data from the main page 
   https://www.flashscore.com/
 
 ## Script Summary:
