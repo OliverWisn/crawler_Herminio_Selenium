@@ -35,9 +35,6 @@ try:
     element = WebDriverWait(driver, 20).until(
         EC.presence_of_element_located((By.ID, "box-over-content-a")))
 finally:
-    # Loads the full code of the page into a variable.
-    pageSource = driver.page_source
-
     # Determining the number of the football matches based on 
     # the attribute.
     soccer = driver.find_element(By.XPATH , "/html/body/div[5]/div/div[1]/a[1]")
@@ -51,7 +48,7 @@ finally:
     # the loop iterations.
     sum_to_iterate = int(matches_soccer) + len(countries)
     
-    for ind in range(1, (sum_to_iterate + 1)):
+    for ind in range(1, (sum_to_iterate+1)):
         # Scraping of the country names.
         try:
             country = driver.find_element(By.XPATH ,\
