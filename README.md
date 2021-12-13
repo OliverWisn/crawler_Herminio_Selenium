@@ -13,6 +13,8 @@ python 3.9 - rest in requirements.txt .
 - I made this script so that the master branch had always 
   the functioning code. 
 - To run the script you must run the file "crawler_her_sel.py". 
+- The creeper only scrapes the data from the main page 
+  https://www.flashscore.com/
 
 ## Script Summary:
 After you run the script, you must wait for the programm to finish. In 
@@ -22,7 +24,7 @@ flashscore20211213-10.27.30.csv the exact date and time of the scraping
 is saved in the name. When you load the data from the csv file into 
 Excel 2019, the following data layout appears:
 
-<img src="https://github.com/OliverWisn/alien_invasion/blob/master/assets/demo_3.jpg" width=1000>
+<img src="https://github.com/OliverWisn/crawler_Herminio_Selenium/blob/master/image/demo_1.jpg" width=1000>
 
 ## Version:
 This is version 1.00 of the crawler.
