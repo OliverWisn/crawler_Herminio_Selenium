@@ -43,12 +43,16 @@ finally:
 
     # Determining the number of the football matches with the help of 
     # the BeautifulSoup.
-#    soccer = driver.find_element(By.XPATH , "/html/body/div[5]/div/div[1]/a[1]")
-#    matches_soccer = soccer.get_attribute("data-sport-count")
     games_1 = bsObj.find_all("div", {"class":\
     "event__participant event__participant--home"})
+    games_2 = bsObj.find_all("div", {"class":\
+    "event__participant event__participant--home fontBold"})
+    games_3 = bsObj.find_all("div", {"class":\
+    "event__participant event__participant--away"})
+    games_4 = bsObj.find_all("div", {"class":\
+    "event__participant event__participant--away fontBold"})
 
-    for game in games_1:
+    for game in games_4:
         print(game.get_text())
 
 
