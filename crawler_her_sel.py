@@ -52,17 +52,14 @@ finally:
     games_4 = bsObj.find_all("div", {"class":\
     "event__participant event__participant--away fontBold"})
 
-    for game in games_4:
-        print(game.get_text())
-
-
     # Determining the number of the countries for the given football 
     # matches.
     countries = driver.find_elements(By.CLASS_NAME , "event__title--type")
 
     # Determination of the number that determines the number of 
     # the loop iterations.
-    sum_to_iterate = len(countries) # + int(matches_soccer)
+    sum_to_iterate = len(countries) + len(games_1) + len(games_2) +\
+     len(games_3) + len(games_4)
     
     for ind in range(1, (sum_to_iterate+1)):
         # Scraping of the country names.
