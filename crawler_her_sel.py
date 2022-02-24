@@ -8,6 +8,7 @@ from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from bs4 import BeautifulSoup
 import pandas as pd
 
 # Variable with the URL of the website.
@@ -33,12 +34,23 @@ list_of_away_teams = []
 # Wait for page to fully render
 try:
     element = WebDriverWait(driver, 20).until(
-        EC.presence_of_element_located((By.ID, "box-over-content-a")))
+        EC.presence_of_element_located((By.CLASS_NAME, \
+            "boxOverContent__bannerLink")))
 finally:
-    # Determining the number of the football matches based on 
-    # the attribute.
-    soccer = driver.find_element(By.XPATH , "/html/body/div[5]/div/div[1]/a[1]")
-    matches_soccer = soccer.get_attribute("data-sport-count")
+    # Loads the website code as the BeautifulSoup object.
+    pageSource = driver.page_source
+    bsObj = BeautifulSoup(pageSource, "lxml")
+
+    # Determining the number of the football matches with the help of 
+    # the BeautifulSoup.
+#    soccer = driver.find_element(By.XPATH , "/html/body/div[5]/div/div[1]/a[1]")
+#    matches_soccer = soccer.get_attribute("data-sport-count")
+    games_1 = bsObj.find_all("div", {"class":\
+    "event__participant event__participant--home"})
+
+    for game in games_1:
+        print(game.get_text())
+
 
     # Determining the number of the countries for the given football 
     # matches.
@@ -46,7 +58,7 @@ finally:
 
     # Determination of the number that determines the number of 
     # the loop iterations.
-    sum_to_iterate = int(matches_soccer) + len(countries)
+    sum_to_iterate = len(countries) # + int(matches_soccer)
     
     for ind in range(1, (sum_to_iterate+1)):
         # Scraping of the country names.
