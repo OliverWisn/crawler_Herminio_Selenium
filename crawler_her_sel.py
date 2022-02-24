@@ -120,12 +120,12 @@ finally:
 
     # Add lists with the scraped data to the dictionary in the correct 
     # order.
-    dictionary_of_matches["countries"] = list_of_countries
-    dictionary_of_matches["leagues"] = list_of_leagues
-    dictionary_of_matches["home_teams"] = list_of_home_teams
-    dictionary_of_matches["scores_for_home_teams"] = list_of_scores_for_home
-    dictionary_of_matches["scores_for_away_teams"] = list_of_scores_for_away
-    dictionary_of_matches["away_teams"] = list_of_away_teams
+    dictionary_of_matches["Countries"] = list_of_countries
+    dictionary_of_matches["Leagues"] = list_of_leagues
+    dictionary_of_matches["Home_teams"] = list_of_home_teams
+    dictionary_of_matches["Scores_for_home_teams"] = list_of_scores_for_home
+    dictionary_of_matches["Scores_for_away_teams"] = list_of_scores_for_away
+    dictionary_of_matches["Away_teams"] = list_of_away_teams
 
     # Creating of the frame for the data with the help of the pandas 
     # package.
