@@ -34,8 +34,7 @@ list_of_away_teams = []
 # Wait for page to fully render
 try:
     element = WebDriverWait(driver, 25).until(
-        EC.presence_of_element_located((By.CLASS_NAME, \
-            "adsclick")))
+        EC.presence_of_element_located((By.CLASS_NAME, "adsclick")))
 finally:
     # Loads the website code as the BeautifulSoup object.
     pageSource = driver.page_source
@@ -54,20 +53,21 @@ finally:
 
     # Determining the number of the countries for the given football 
     # matches.
-    countries = driver.find_elements(By.CLASS_NAME , "event__title--type")
+    countries = driver.find_elements(By.CLASS_NAME, "event__title--type")
 
     # Determination of the number that determines the number of 
     # the loop iterations.
     sum_to_iterate = len(countries) + len(games_1) + len(games_2) 
     + len(games_3) + len(games_4)
-    print(sum_to_iterate)
     
     for ind in range(1, (sum_to_iterate+1)):
         # Scraping of the country names.
         try:
-            country = driver.find_element(By.XPATH ,\
-             '//div[@class="sportName soccer"]/div['+str(ind)+\
-             ']/div[1]/div/span[1]').text
+            country = driver.find_element(By.XPATH, 
+                '//div[@class="sportName soccer"]/div['+str(ind)+
+                ']/div[2]/div/span[1]').text
+            # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[1]/div[2]/div/span[1]
+            # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[4]/div[2]/div/span[1]
             list_of_countries.append(country)
         except:
             country = ""
