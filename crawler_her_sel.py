@@ -76,8 +76,6 @@ finally:
             league = driver.find_element(By.XPATH, 
                 '//div[@class="sportName soccer"]/div['+str(ind)+
                 ']/div[2]/div/span[2]').text
-            # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[1]/div[2]/div/span[2]
-            # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[4]/div[2]/div/span[2]
             list_of_leagues.append(league)
         except:
             league = ""
@@ -85,8 +83,9 @@ finally:
 
         # Scraping of the home team names.
         try:
-            home_team = driver.find_element(By.XPATH ,\
-             '//div[@class="sportName soccer"]/div['+str(ind)+']/div[3]').text
+            home_team = driver.find_element(By.XPATH,
+                '//div[@class="sportName soccer"]/div['+str(ind)+
+                ']/div[3]').text
             list_of_home_teams.append(home_team)
         except:
             home_team = ""
@@ -94,8 +93,9 @@ finally:
 
         # Scraping of the home team scores.
         try:
-            score_for_home_team = driver.find_element(By.XPATH ,\
-             '//div[@class="sportName soccer"]/div['+str(ind)+']/div[5]').text
+            score_for_home_team = driver.find_element(By.XPATH, 
+                '//div[@class="sportName soccer"]/div['+str(ind)+
+                ']/div[5]').text
             list_of_scores_for_home.append(score_for_home_team)
         except:
             score_for_home_team = ""
@@ -103,8 +103,9 @@ finally:
 
         # Scraping of the away team scores.
         try: 
-            score_for_away_team = driver.find_element(By.XPATH ,\
-             '//div[@class="sportName soccer"]/div['+str(ind)+']/div[6]').text
+            score_for_away_team = driver.find_element(By.XPATH, 
+                '//div[@class="sportName soccer"]/div['+str(ind)+
+                ']/div[6]').text
             list_of_scores_for_away.append(score_for_away_team)
         except:
             score_for_away_team = ""
@@ -112,8 +113,9 @@ finally:
 
         # Scraping of the away team names.
         try:
-            away_team = driver.find_element(By.XPATH ,\
-             '//div[@class="sportName soccer"]/div['+str(ind)+']/div[4]').text
+            away_team = driver.find_element(By.XPATH, 
+                '//div[@class="sportName soccer"]/div['+str(ind)+
+                ']/div[4]').text
             list_of_away_teams.append(away_team)
         except:
             away_team = ""
@@ -134,7 +136,7 @@ finally:
 
     # Saving of the properly formatted data to the csv file. The date 
     # and the time of the scraping are hidden in the file name.
-    name_of_file = lambda: "flashscore{}.csv".format(time.strftime(\
+    name_of_file = lambda: "flashscore{}.csv".format(time.strftime(
         "%Y%m%d-%H.%M.%S"))
     df_res.to_csv(name_of_file(), encoding="utf-8")
 
