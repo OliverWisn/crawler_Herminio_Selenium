@@ -27,4 +27,4 @@ Excel 2019, the following data layout appears:
 <img src="https://github.com/OliverWisn/crawler_Herminio_Selenium/blob/master/image/demo_1.jpg" width=1000>
 
 ## Version:
-This is version 2.00 of the scraper.
+This is version 3.00 of the scraper.
