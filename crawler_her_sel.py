@@ -33,9 +33,9 @@ list_of_away_teams = []
 
 # Wait for page to fully render
 try:
-    element = WebDriverWait(driver, 20).until(
+    element = WebDriverWait(driver, 25).until(
         EC.presence_of_element_located((By.CLASS_NAME, \
-            "boxOverContent__bannerLink")))
+            "adsclick")))
 finally:
     # Loads the website code as the BeautifulSoup object.
     pageSource = driver.page_source
@@ -43,8 +43,9 @@ finally:
 
     # Determining the number of the football matches with the help of 
     # the BeautifulSoup.
-    games_1 = bsObj.find_all("div", {"class":\
-    "event__participant event__participant--home"})
+    games_1 = bsObj.find_all("div", {"class": 
+        "event__participant event__participant--home"})
+    print(len(games_1))
     games_2 = bsObj.find_all("div", {"class":\
     "event__participant event__participant--home fontBold"})
     games_3 = bsObj.find_all("div", {"class":\
