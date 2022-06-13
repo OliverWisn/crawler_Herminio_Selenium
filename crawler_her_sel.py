@@ -66,8 +66,6 @@ finally:
             country = driver.find_element(By.XPATH, 
                 '//div[@class="sportName soccer"]/div['+str(ind)+
                 ']/div[2]/div/span[1]').text
-            # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[1]/div[2]/div/span[1]
-            # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[4]/div[2]/div/span[1]
             list_of_countries.append(country)
         except:
             country = ""
@@ -75,9 +73,11 @@ finally:
 
         # Scraping of the league names.
         try:
-            league = driver.find_element(By.XPATH ,\
-             '//div[@class="sportName soccer"]/div['+str(ind)+\
-             ']/div[1]/div/span[2]').text
+            league = driver.find_element(By.XPATH, 
+                '//div[@class="sportName soccer"]/div['+str(ind)+
+                ']/div[2]/div/span[2]').text
+            # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[1]/div[2]/div/span[2]
+            # /html/body/div[6]/div[1]/div/div[1]/div[2]/div[5]/div[2]/div/section/div/div/div[4]/div[2]/div/span[2]
             list_of_leagues.append(league)
         except:
             league = ""
