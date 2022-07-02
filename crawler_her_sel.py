@@ -35,6 +35,17 @@ def _addingheaders(my_url):
     '/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8'}
     req = session.get(my_url, headers=headers)
 
+def scrapingitems(driver, my_list, my_xpath):
+        """
+        Create appropriate lists of the data for the pandas library.
+        """
+        try:
+            elem_to_scrap = driver.find_element(By.XPATH, my_xpath).text
+            my_list.append(elem_to_scrap)
+        except:
+            elem_to_scrap = ""
+            my_list.append(elem_to_scrap)
+
 # Variable with the URL of the website.
 my_url = "https://www.flashscore.com/"
 
@@ -46,10 +57,12 @@ driver = firefoxdriver(my_url)
 driver.get(my_url)
 
 # Prepare the blank dictionary to fill in for pandas.
-dictionary_of_matches = {}
+dict_of_matches = {}
 
 # Preparation of lists with scraped data.
-list_of_countries = []
+lst_countries = []
+# list_of_countries = []
+
 list_of_leagues = []
 list_of_home_teams = []
 list_of_scores_for_home = []
@@ -60,7 +73,11 @@ list_of_away_teams = []
 try:
     element = WebDriverWait(driver, 25).until(
         EC.presence_of_element_located((By.CLASS_NAME, "adsclick")))
-finally:
+except TimeoutException:
+    print("Loading took too much time!. Please rerun the script.")
+except Exception as e:
+    print(str(e))
+else:
     # Loads the website code as the BeautifulSoup object.
     pageSource = driver.page_source
     bsObj = BeautifulSoup(pageSource, "lxml")
@@ -87,14 +104,18 @@ finally:
     
     for ind in range(1, (sum_to_iterate+1)):
         # Scraping of the country names.
-        try:
-            country = driver.find_element(By.XPATH, 
-                '//div[@class="sportName soccer"]/div['+str(ind)+
-                ']/div[2]/div/span[1]').text
-            list_of_countries.append(country)
-        except:
-            country = ""
-            list_of_countries.append(country)
+        xpath_countries = '//div[@class="sportName soccer"]/div['+str(ind)+']/div[2]/div/span[1]'
+        scrapingitems(driver, lst_countries, xpath_countries)
+
+        # try:
+        #     country = driver.find_element(By.XPATH, 
+        #         '//div[@class="sportName soccer"]/div['+str(ind)+
+        #         ']/div[2]/div/span[1]').text
+        #     list_of_countries.append(country)
+        # except:
+        #     country = ""
+        #     list_of_countries.append(country)
+
 
         # Scraping of the league names.
         try:
@@ -148,16 +169,16 @@ finally:
 
     # Add lists with the scraped data to the dictionary in the correct 
     # order.
-    dictionary_of_matches["Countries"] = list_of_countries
-    dictionary_of_matches["Leagues"] = list_of_leagues
-    dictionary_of_matches["Home_teams"] = list_of_home_teams
-    dictionary_of_matches["Scores_for_home_teams"] = list_of_scores_for_home
-    dictionary_of_matches["Scores_for_away_teams"] = list_of_scores_for_away
-    dictionary_of_matches["Away_teams"] = list_of_away_teams
+    dict_of_matches["Countries"] = lst_countries
+    dict_of_matches["Leagues"] = list_of_leagues
+    dict_of_matches["Home_teams"] = list_of_home_teams
+    dict_of_matches["Scores_for_home_teams"] = list_of_scores_for_home
+    dict_of_matches["Scores_for_away_teams"] = list_of_scores_for_away
+    dict_of_matches["Away_teams"] = list_of_away_teams
 
     # Creating of the frame for the data with the help of the pandas 
     # package.
-    df_res = pd.DataFrame(dictionary_of_matches)
+    df_res = pd.DataFrame(dict_of_matches)
 
     # Saving of the properly formatted data to the csv file. The date 
     # and the time of the scraping are hidden in the file name.
@@ -165,4 +186,5 @@ finally:
         "%Y%m%d-%H.%M.%S"))
     df_res.to_csv(name_of_file(), encoding="utf-8")
 
+finally:
     driver.quit()
