@@ -7,16 +7,42 @@ from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
+import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+
+def firefoxdriver(my_url):
+    """
+    Preparing of the browser for the work and adding the headers to 
+    the browser.
+    """
+    # Preparing of the Tor browser for the work.
+    options = Options()
+    options.add_argument("--headless")
+    driver = Firefox(options=options)
+
+    # # Adding the headers to the browser.
+    _addingheaders(my_url)
+
+    return driver
+
+def _addingheaders(my_url):
+    """Adding the headers to the browser."""
+    session = requests.Session()
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64;'+
+    ' rv:97.0) Gecko/20100101 Firefox/97.0', 'Accept': 'text/html,application'+
+    '/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8'}
+    req = session.get(my_url, headers=headers)
 
 # Variable with the URL of the website.
 my_url = "https://www.flashscore.com/"
 
-# Preparing of the browser for the work.
-options = Options()
-options.add_argument("--headless")
-driver = Firefox(options=options)
+# Preparing of the Tor browser for the work and adding the headers 
+# to the browser.
+driver = firefoxdriver(my_url)
+
+# Loads the website code as the Selenium object.
 driver.get(my_url)
 
 # Prepare the blank dictionary to fill in for pandas.
