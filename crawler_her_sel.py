@@ -92,7 +92,7 @@ else:
     for ind in range(1, (sum_to_iterate+1)):
         # Scraping of the country names.
         xpath_countries = ('//div[@class="sportName soccer"]/div['+str(ind)
-            +']/div[2]/div/span[1]')
+                            +']/div[2]/div/span[1]')
         scrapingitems(driver, lst_countries, xpath_countries)
 
         # try:
@@ -107,7 +107,7 @@ else:
 
         # Scraping of the league names.
         xpath_leagues = ('//div[@class="sportName soccer"]/div['+str(ind)
-            +']/div[2]/div/span[2]')
+                        +']/div[2]/div/span[2]')
         scrapingitems(driver, leagues, xpath_leagues)
         
         # try:
@@ -122,7 +122,7 @@ else:
 
         # Scraping of the home team names.
         xpath_home_teams = ('//div[@class="sportName soccer"]/div['+str(ind)
-            +']/div[3]')
+                            +']/div[3]')
         scrapingitems(driver, home_teams, xpath_home_teams)
 
         # try:
@@ -137,7 +137,7 @@ else:
 
         # Scraping of the home team scores.
         xpath_scores_home = ('//div[@class="sportName soccer"]/div['+str(ind)
-            +']/div[5]')
+                            +']/div[5]')
         scrapingitems(driver, scores_home, xpath_scores_home)
 
         # try:
@@ -152,7 +152,7 @@ else:
 
         # Scraping of the away team scores.
         xpath_scores_away = ('//div[@class="sportName soccer"]/div['+str(ind)
-            +']/div[6]')
+                            +']/div[6]')
         scrapingitems(driver, scores_away, xpath_scores_away)
 
         # try: 
@@ -167,7 +167,7 @@ else:
 
         # Scraping of the away team names.
         xpath_away_teams = ('//div[@class="sportName soccer"]/div['+str(ind)
-            +']/div[4]')
+                            +']/div[4]')
         scrapingitems(driver, away_teams, xpath_away_teams)
 
         # try:
