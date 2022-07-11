@@ -51,9 +51,9 @@ dict_of_matches = {}
 lst_countries = []
 leagues = []
 home_teams = []
-# list_of_home_teams = []
+scores_home = []
+# list_of_scores_for_home = []
 
-list_of_scores_for_home = []
 list_of_scores_for_away = []
 list_of_away_teams = []
 
@@ -123,7 +123,7 @@ else:
 
         # Scraping of the home team names.
         xpath_home_teams = ('//div[@class="sportName soccer"]/div['+str(ind)
-            +']/div[5]')
+            +']/div[3]')
         scrapingitems(driver, home_teams, xpath_home_teams)
 
         # try:
@@ -137,14 +137,19 @@ else:
 
 
         # Scraping of the home team scores.
-        try:
-            score_for_home_team = driver.find_element(By.XPATH, 
-                '//div[@class="sportName soccer"]/div['+str(ind)+
-                ']/div[5]').text
-            list_of_scores_for_home.append(score_for_home_team)
-        except:
-            score_for_home_team = ""
-            list_of_scores_for_home.append(score_for_home_team)
+        xpath_scores_home = ('//div[@class="sportName soccer"]/div['+str(ind)
+            +']/div[5]')
+        scrapingitems(driver, scores_home, xpath_scores_home)
+
+        # try:
+        #     score_home_team = driver.find_element(By.XPATH, 
+        #         '//div[@class="sportName soccer"]/div['+str(ind)+
+        #         ']/div[5]').text
+        #     scores_home.append(score_for_home_team)
+        # except:
+        #     score_home_team = ""
+        #     scores_home.append(score_for_home_team)
+
 
         # Scraping of the away team scores.
         try: 
@@ -171,7 +176,7 @@ else:
     dict_of_matches["Countries"] = lst_countries
     dict_of_matches["Leagues"] = leagues
     dict_of_matches["Home_teams"] = home_teams
-    dict_of_matches["Scores_for_home_teams"] = list_of_scores_for_home
+    dict_of_matches["Scores_for_home_teams"] = scores_home
     dict_of_matches["Scores_for_away_teams"] = list_of_scores_for_away
     dict_of_matches["Away_teams"] = list_of_away_teams
 
