@@ -61,9 +61,9 @@ dict_of_matches = {}
 
 # Preparation of lists with scraped data.
 lst_countries = []
-# list_of_countries = []
+leagues = []
+# list_of_leagues = []
 
-list_of_leagues = []
 list_of_home_teams = []
 list_of_scores_for_home = []
 list_of_scores_for_away = []
@@ -104,7 +104,8 @@ else:
     
     for ind in range(1, (sum_to_iterate+1)):
         # Scraping of the country names.
-        xpath_countries = '//div[@class="sportName soccer"]/div['+str(ind)+']/div[2]/div/span[1]'
+        xpath_countries = ('//div[@class="sportName soccer"]/div['+str(ind)
+            +']/div[2]/div/span[1]')
         scrapingitems(driver, lst_countries, xpath_countries)
 
         # try:
@@ -118,14 +119,19 @@ else:
 
 
         # Scraping of the league names.
-        try:
-            league = driver.find_element(By.XPATH, 
-                '//div[@class="sportName soccer"]/div['+str(ind)+
-                ']/div[2]/div/span[2]').text
-            list_of_leagues.append(league)
-        except:
-            league = ""
-            list_of_leagues.append(league)
+        xpath_leagues = ('//div[@class="sportName soccer"]/div['+str(ind)
+            +']/div[2]/div/span[2]')
+        scrapingitems(driver, leagues, xpath_leagues)
+        
+        # try:
+        #     league = driver.find_element(By.XPATH, 
+        #         '//div[@class="sportName soccer"]/div['+str(ind)+
+        #         ']/div[2]/div/span[2]').text
+        #     leagues.append(league)
+        # except:
+        #     league = ""
+        #     leagues.append(league)
+
 
         # Scraping of the home team names.
         try:
@@ -170,7 +176,7 @@ else:
     # Add lists with the scraped data to the dictionary in the correct 
     # order.
     dict_of_matches["Countries"] = lst_countries
-    dict_of_matches["Leagues"] = list_of_leagues
+    dict_of_matches["Leagues"] = leagues
     dict_of_matches["Home_teams"] = list_of_home_teams
     dict_of_matches["Scores_for_home_teams"] = list_of_scores_for_home
     dict_of_matches["Scores_for_away_teams"] = list_of_scores_for_away
