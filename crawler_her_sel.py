@@ -22,18 +22,7 @@ def firefoxdriver(my_url):
     options.add_argument("--headless")
     driver = Firefox(options=options)
 
-    # # Adding the headers to the browser.
-    _addingheaders(my_url)
-
     return driver
-
-def _addingheaders(my_url):
-    """Adding the headers to the browser."""
-    session = requests.Session()
-    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64;'+
-    ' rv:97.0) Gecko/20100101 Firefox/97.0', 'Accept': 'text/html,application'+
-    '/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8'}
-    req = session.get(my_url, headers=headers)
 
 def scrapingitems(driver, my_list, my_xpath):
         """
