@@ -53,9 +53,8 @@ leagues = []
 home_teams = []
 scores_home = []
 scores_away = []
-# list_of_scores_for_away = []
-
-list_of_away_teams = []
+away_teams = []
+# list_of_away_teams = []
 
 # Wait for page to fully render
 try:
@@ -167,14 +166,19 @@ else:
 
 
         # Scraping of the away team names.
-        try:
-            away_team = driver.find_element(By.XPATH, 
-                '//div[@class="sportName soccer"]/div['+str(ind)+
-                ']/div[4]').text
-            list_of_away_teams.append(away_team)
-        except:
-            away_team = ""
-            list_of_away_teams.append(away_team)
+        xpath_away_teams = ('//div[@class="sportName soccer"]/div['+str(ind)
+            +']/div[4]')
+        scrapingitems(driver, away_teams, xpath_away_teams)
+
+        # try:
+        #     away_team = driver.find_element(By.XPATH, 
+        #         '//div[@class="sportName soccer"]/div['+str(ind)+
+        #         ']/div[4]').text
+        #     away_teams.append(away_team)
+        # except:
+        #     away_team = ""
+        #     away_teams.append(away_team)
+
 
     # Add lists with the scraped data to the dictionary in the correct 
     # order.
@@ -183,7 +187,7 @@ else:
     dict_of_matches["Home_teams"] = home_teams
     dict_of_matches["Scores_for_home_teams"] = scores_home
     dict_of_matches["Scores_for_away_teams"] = scores_away
-    dict_of_matches["Away_teams"] = list_of_away_teams
+    dict_of_matches["Away_teams"] = away_teams
 
     # Creating of the frame for the data with the help of the pandas 
     # package.
