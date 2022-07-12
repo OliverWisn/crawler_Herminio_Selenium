@@ -70,14 +70,18 @@ else:
 
     # Determining the number of the football matches with the help of 
     # the BeautifulSoup.
-    games_1 = bsObj.find_all("div", {"class": 
-        "event__participant event__participant--home"})
-    games_2 = bsObj.find_all("div", {"class": 
-        "event__participant event__participant--home fontBold"})
-    games_3 = bsObj.find_all("div", {"class": 
-        "event__participant event__participant--away"})
-    games_4 = bsObj.find_all("div", {"class": 
-        "event__participant event__participant--away fontBold"})
+    games_1 = bsObj.find_all(
+            "div", {"class": 
+            "event__participant event__participant--home"})
+    games_2 = bsObj.find_all(
+            "div", {"class": 
+            "event__participant event__participant--home fontBold"})
+    games_3 = bsObj.find_all(
+            "div", {"class": 
+            "event__participant event__participant--away"})
+    games_4 = bsObj.find_all(
+            "div", {"class": 
+            "event__participant event__participant--away fontBold"})
 
     # Determining the number of the countries for the given football 
     # matches.
@@ -87,7 +91,7 @@ else:
     # the loop iterations.
     sum_to_iterate = len(all_countries) + len(games_1) + len(games_2) 
     + len(games_3) + len(games_4)
-    
+
     for ind in range(1, (sum_to_iterate+1)):
         # Scraping of the country names.
         xpath_countries = ('//div[@class="sportName soccer"]/div['+str(ind)
