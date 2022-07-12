@@ -45,7 +45,7 @@ driver = firefoxdriver(my_url)
 driver.get(my_url)
 
 # Prepare the blank dictionary to fill in for pandas.
-dict_of_matches = {}
+matches = {}
 
 # Preparation of lists with scraped data.
 lst_countries = []
@@ -182,16 +182,16 @@ else:
 
     # Add lists with the scraped data to the dictionary in the correct 
     # order.
-    dict_of_matches["Countries"] = lst_countries
-    dict_of_matches["Leagues"] = leagues
-    dict_of_matches["Home_teams"] = home_teams
-    dict_of_matches["Scores_for_home_teams"] = scores_home
-    dict_of_matches["Scores_for_away_teams"] = scores_away
-    dict_of_matches["Away_teams"] = away_teams
+    matches["Countries"] = lst_countries
+    matches["Leagues"] = leagues
+    matches["Home_teams"] = home_teams
+    matches["Scores_for_home_teams"] = scores_home
+    matches["Scores_for_away_teams"] = scores_away
+    matches["Away_teams"] = away_teams
 
     # Creating of the frame for the data with the help of the pandas 
     # package.
-    df_res = pd.DataFrame(dict_of_matches)
+    df_res = pd.DataFrame(matches)
 
     # Saving of the properly formatted data to the csv file. The date 
     # and the time of the scraping are hidden in the file name.
