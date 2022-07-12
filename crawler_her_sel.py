@@ -48,7 +48,8 @@ driver.get(my_url)
 matches = {}
 
 # Preparation of lists with scraped data.
-lst_countries = []
+countries = []
+# lst_countries = []
 leagues = []
 home_teams = []
 scores_home = []
@@ -82,18 +83,18 @@ else:
 
     # Determining the number of the countries for the given football 
     # matches.
-    countries = driver.find_elements(By.CLASS_NAME, "event__title--type")
+    all_countries = driver.find_elements(By.CLASS_NAME, "event__title--type")
 
     # Determination of the number that determines the number of 
     # the loop iterations.
-    sum_to_iterate = len(countries) + len(games_1) + len(games_2) 
+    sum_to_iterate = len(all_countries) + len(games_1) + len(games_2) 
     + len(games_3) + len(games_4)
     
     for ind in range(1, (sum_to_iterate+1)):
         # Scraping of the country names.
         xpath_countries = ('//div[@class="sportName soccer"]/div['+str(ind)
                             +']/div[2]/div/span[1]')
-        scrapingitems(driver, lst_countries, xpath_countries)
+        scrapingitems(driver, countries, xpath_countries)
 
         # try:
         #     country = driver.find_element(By.XPATH, 
@@ -182,7 +183,7 @@ else:
 
     # Add lists with the scraped data to the dictionary in the correct 
     # order.
-    matches["Countries"] = lst_countries
+    matches["Countries"] = countries
     matches["Leagues"] = leagues
     matches["Home_teams"] = home_teams
     matches["Scores_for_home_teams"] = scores_home
