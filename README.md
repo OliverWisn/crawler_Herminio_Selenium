@@ -10,8 +10,7 @@ I decided to answer this question with the help of this scraper (code).
 python 3.10 - rest in requirements.txt .
 
 ## Remarks:
-- I made this script so that the master branch had always 
-  the functioning code. 
+- The master branch had always the functioning code. 
 - To run the script you must run the file "crawler_her_sel.py". 
 - The scraper only scrapes the data from the main page 
   https://www.flashscore.com/
@@ -27,4 +26,4 @@ Excel 2019, the following data layout appears:
 <img src="https://github.com/OliverWisn/crawler_Herminio_Selenium/blob/master/image/demo_1.jpg" width=1000>
 
 ## Version:
-This is version 3.00 of the scraper.
+This is version 4.00 of the scraper.
