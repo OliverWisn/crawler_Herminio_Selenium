@@ -49,13 +49,11 @@ matches = {}
 
 # Preparation of lists with scraped data.
 countries = []
-# lst_countries = []
 leagues = []
 home_teams = []
 scores_home = []
 scores_away = []
 away_teams = []
-# list_of_away_teams = []
 
 # Wait for page to fully render
 try:
@@ -96,91 +94,31 @@ else:
                             +']/div[2]/div/span[1]')
         scrapingitems(driver, countries, xpath_countries)
 
-        # try:
-        #     country = driver.find_element(By.XPATH, 
-        #         '//div[@class="sportName soccer"]/div['+str(ind)+
-        #         ']/div[2]/div/span[1]').text
-        #     list_of_countries.append(country)
-        # except:
-        #     country = ""
-        #     list_of_countries.append(country)
-
-
         # Scraping of the league names.
         xpath_leagues = ('//div[@class="sportName soccer"]/div['+str(ind)
                         +']/div[2]/div/span[2]')
         scrapingitems(driver, leagues, xpath_leagues)
         
-        # try:
-        #     league = driver.find_element(By.XPATH, 
-        #         '//div[@class="sportName soccer"]/div['+str(ind)+
-        #         ']/div[2]/div/span[2]').text
-        #     leagues.append(league)
-        # except:
-        #     league = ""
-        #     leagues.append(league)
-
-
         # Scraping of the home team names.
         xpath_home_teams = ('//div[@class="sportName soccer"]/div['+str(ind)
                             +']/div[3]')
         scrapingitems(driver, home_teams, xpath_home_teams)
-
-        # try:
-        #     home_team = driver.find_element(By.XPATH,
-        #         '//div[@class="sportName soccer"]/div['+str(ind)+
-        #         ']/div[3]').text
-        #     home_teams.append(home_team)
-        # except:
-        #     home_team = ""
-        #     home_teams.append(home_team)
-
 
         # Scraping of the home team scores.
         xpath_scores_home = ('//div[@class="sportName soccer"]/div['+str(ind)
                             +']/div[5]')
         scrapingitems(driver, scores_home, xpath_scores_home)
 
-        # try:
-        #     score_home_team = driver.find_element(By.XPATH, 
-        #         '//div[@class="sportName soccer"]/div['+str(ind)+
-        #         ']/div[5]').text
-        #     scores_home.append(score_home_team)
-        # except:
-        #     score_home_team = ""
-        #     scores_home.append(score_home_team)
-
-
         # Scraping of the away team scores.
         xpath_scores_away = ('//div[@class="sportName soccer"]/div['+str(ind)
                             +']/div[6]')
         scrapingitems(driver, scores_away, xpath_scores_away)
 
-        # try: 
-        #     score_away_team = driver.find_element(By.XPATH, 
-        #         '//div[@class="sportName soccer"]/div['+str(ind)+
-        #         ']/div[6]').text
-        #     scores_away.append(score_away_team)
-        # except:
-        #     score_away_team = ""
-        #     scores_away.append(score_away_team)
-
-
         # Scraping of the away team names.
         xpath_away_teams = ('//div[@class="sportName soccer"]/div['+str(ind)
                             +']/div[4]')
         scrapingitems(driver, away_teams, xpath_away_teams)
-
-        # try:
-        #     away_team = driver.find_element(By.XPATH, 
-        #         '//div[@class="sportName soccer"]/div['+str(ind)+
-        #         ']/div[4]').text
-        #     away_teams.append(away_team)
-        # except:
-        #     away_team = ""
-        #     away_teams.append(away_team)
-
-
+       
     # Add lists with the scraped data to the dictionary in the correct 
     # order.
     matches["Countries"] = countries
